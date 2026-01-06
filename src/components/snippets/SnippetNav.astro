@@ -2,49 +2,47 @@
 import type { CollectionEntry } from "astro:content";
 
 interface Props {
-  category: string;
-  snippets: CollectionEntry<"snippets">[];
-  currentSlug: string;
+    category: string;
+    snippets: CollectionEntry<"snippets">[];
+    currentSlug: string;
 }
 
 const { category, snippets, currentSlug } = Astro.props;
 ---
 
 <nav class="border border-themed p-4">
-  <h3
-    class="font-sans font-bold uppercase text-xs tracking-wide mb-4 text-accent"
-  >
-    {category.replace(/-/g, " ")}
-  </h3>
-  <ul class="space-y-2">
-    {
-      snippets.map((snippet) => (
-        <li>
-          <a
-            href={`/snippets/${snippet.slug}`}
-            class="block py-2 px-3 text-sm transition-colors"
-            class:list={[
-              { "font-semibold": snippet.slug === currentSlug },
-            ]}
-            style={snippet.slug === currentSlug ?
-              "background-color: var(--color-nyt-text); color: var(--color-nyt-bg);" :
-              ""
-            }
-          >
-            {snippet.data.title}
-          </a>
-        </li>
-      ))
-    }
-  </ul>
-
-  <!-- Back to all snippets link -->
-  <div class="mt-6 pt-6 border-t border-themed">
-    <a
-      href="/snippets"
-      class="text-sm text-accent hover-accent transition-colors"
+    <h3
+        class="font-sans font-bold uppercase text-xs tracking-wide mb-4 text-accent"
     >
-      ← All Snippets
-    </a>
-  </div>
+        {category.replace(/-/g, " ")}
+    </h3>
+    <ul class="space-y-2">
+        {
+            snippets.map((snippet) => (
+                <li>
+                    <a
+                        href={`/snippets/${snippet.slug}`}
+                        class="block py-2 px-3 text-sm transition-colors"
+                        style={
+                            snippet.slug === currentSlug
+                                ? "background-color: var(--color-nyt-text); color: var(--color-nyt-bg);"
+                                : ""
+                        }
+                    >
+                        {snippet.data.title}
+                    </a>
+                </li>
+            ))
+        }
+    </ul>
+
+    <!-- Back to all snippets link -->
+    <div class="mt-6 pt-6 border-t border-themed">
+        <a
+            href="/snippets"
+            class="text-sm text-accent hover-accent transition-colors"
+        >
+            ← Voltar
+        </a>
+    </div>
 </nav>

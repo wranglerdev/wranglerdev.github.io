@@ -1,14 +1,19 @@
 ---
 interface Props {
-  src: string;
-  alt: string;
+    src: string;
+    alt: string;
 }
 
 const { src, alt } = Astro.props;
 ---
 
 <div class="w-full mb-12">
-  <div class="max-w-5xl mx-auto">
-    <img src={src} alt={alt} class="w-full h-auto rounded-lg" loading="eager" />
-  </div>
+    <div class="max-w-5xl mx-auto">
+        <img
+            src={src}
+            alt={alt}
+            class="w-full h-auto rounded-lg"
+            loading="eager"
+        />
+    </div>
 </div>

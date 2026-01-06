@@ -3,49 +3,53 @@ import BaseLayout from "../components/layout/BaseLayout.astro";
 ---
 
 <BaseLayout
-  title="Home"
-  description="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+    title="Home"
+    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
 >
-  <div class="content-wrapper py-20">
-    <div class="max-w-3xl mx-auto text-center">
-      <!-- Main paragraph in serif font -->
-      <p class="text-3xl md:text-4xl font-serif leading-relaxed mb-12">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur.
-      </p>
+    <div class="content-wrapper py-20">
+        <div class="mx-auto flex flex-col md:flex-row justify-between">
+            <!-- Main paragraph in serif font -->
+            <section>
+                <h1 class="text-2xl mb-4">Introduction</h1>
+                <div class="prose">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore
+                        magna aliqua. Ut enim ad minim veniam, quis nostrud
+                        exercitation ullamco laboris nisi ut aliquip ex ea
+                        commodo consequat. Duis aute irure dolor in
+                        reprehenderit in voluptate velit esse cillum dolore eu
+                        fugiat nulla pariatur.
+                    </p>
+                </div>
+            </section>
+            <!-- Social buttons with icons and text -->
+            <div class="flex flex-col gap-4">
+                <a
+                    href="https://linkedin.com/in/yourprofile"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex items-center gap-3 px-6 py-3 border-2 border-text hover-invert transition-all duration-200 font-sans uppercase text-sm tracking-wide"
+                >
+                    <span>LinkedIn</span>
+                </a>
 
-      <!-- Social buttons with icons and text -->
-      <div
-        class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-16"
-      >
-        <a
-          href="https://linkedin.com/in/yourprofile"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="flex items-center gap-3 px-6 py-3 border-2 border-text hover-invert transition-all duration-200 font-sans uppercase text-sm tracking-wide"
-        >
-          <span>LinkedIn</span>
-        </a>
+                <a
+                    href="mailto:your.email@example.com"
+                    class="flex items-center gap-3 px-6 py-3 border-2 border-text hover-invert transition-all duration-200 font-sans uppercase text-sm tracking-wide"
+                >
+                    <span>Email</span>
+                </a>
 
-        <a
-          href="mailto:your.email@example.com"
-          class="flex items-center gap-3 px-6 py-3 border-2 border-text hover-invert transition-all duration-200 font-sans uppercase text-sm tracking-wide"
-        >
-          <span>Email</span>
-        </a>
-
-        <a
-          href="https://github.com/yourusername"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="flex items-center gap-3 px-6 py-3 border-2 border-text hover-invert transition-all duration-200 font-sans uppercase text-sm tracking-wide"
-        >
-          <span>GitHub</span>
-        </a>
-      </div>
+                <a
+                    href="https://github.com/yourusername"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex items-center gap-3 px-6 py-3 border-2 border-text hover-invert transition-all duration-200 font-sans uppercase text-sm tracking-wide"
+                >
+                    <span>GitHub</span>
+                </a>
+            </div>
+        </div>
     </div>
-  </div>
 </BaseLayout>

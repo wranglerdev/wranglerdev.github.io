@@ -3,55 +3,57 @@ import BaseLayout from "../components/layout/BaseLayout.astro";
 import BlogHero from "../components/blog/BlogHero.astro";
 
 interface Props {
-  title: string;
-  description: string;
-  publishDate: Date;
-  heroImage?: string;
-  heroImageAlt?: string;
+    title: string;
+    description: string;
+    publishDate: Date;
+    heroImage?: string;
+    heroImageAlt?: string;
 }
 
 const { title, description, publishDate, heroImage, heroImageAlt } =
-  Astro.props;
+    Astro.props;
 
 const formattedDate = publishDate.toLocaleDateString("en-US", {
-  year: "numeric",
-  month: "long",
-  day: "numeric",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
 });
 ---
 
 <BaseLayout title={title} description={description}>
-  <!-- Hero Image -->
-  {heroImage && <BlogHero src={heroImage} alt={heroImageAlt || title} />}
+    <!-- Hero Image -->
+    {heroImage && <BlogHero src={heroImage} alt={heroImageAlt || title} />}
 
-  <!-- Article Content with margin note support -->
-  <article class="py-12">
-    <div class="blog-content-wrapper">
-      <!-- Left margin (for margin notes on large screens) -->
-      <aside class="hidden lg:block" id="left-margin"></aside>
+    <!-- Article Content with margin note support -->
+    <article class="py-12">
+        <div class="blog-content-wrapper">
+            <!-- Left margin (for margin notes on large screens) -->
+            <aside class="hidden lg:block" id="left-margin"></aside>
 
-      <!-- Main content -->
-      <div>
-        <!-- Article header -->
-        <header class="mb-12 border-b-2 border-text pb-8">
-          <h1 class="text-5xl font-headline font-bold mb-4">{title}</h1>
-          <p class="text-xl text-accent mb-4">{description}</p>
-          <time
-            datetime={publishDate.toISOString()}
-            class="text-sm font-sans uppercase tracking-wide text-accent"
-          >
-            {formattedDate}
-          </time>
-        </header>
+            <!-- Main content -->
+            <div>
+                <!-- Article header -->
+                <header class="mb-12 border-b border-themed pb-8">
+                    <h1 class="text-5xl font-headline font-bold mb-4">
+                        {title}
+                    </h1>
+                    <p class="text-xl text-accent mb-4">{description}</p>
+                    <time
+                        datetime={publishDate.toISOString()}
+                        class="text-sm font-sans uppercase tracking-wide text-accent"
+                    >
+                        {formattedDate}
+                    </time>
+                </header>
 
-        <!-- Article content with prose styling -->
-        <div class="prose prose-lg max-w-none">
-          <slot />
+                <!-- Article content with prose styling -->
+                <div class="prose prose-lg max-w-none">
+                    <slot />
+                </div>
+            </div>
+
+            <!-- Right margin (for margin notes on large screens) -->
+            <aside class="hidden lg:block" id="right-margin"></aside>
         </div>
-      </div>
-
-      <!-- Right margin (for margin notes on large screens) -->
-      <aside class="hidden lg:block" id="right-margin"></aside>
-    </div>
-  </article>
+    </article>
 </BaseLayout>

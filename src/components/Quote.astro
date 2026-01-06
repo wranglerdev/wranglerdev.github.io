@@ -1,0 +1,92 @@
+---
+interface Props {
+    message: string;
+}
+
+const { message } = Astro.props;
+---
+
+<div class="quote-wrapper">
+    <div class="quote-content">
+        <slot />
+    </div>
+    <aside class="quote-aside">
+        <div class="quote-box">
+            <p class="quote-text">{message}</p>
+        </div>
+    </aside>
+</div>
+
+<style>
+    .quote-wrapper {
+        position: relative;
+        margin: 2rem 0;
+    }
+
+    .quote-content {
+        position: relative;
+    }
+
+    .quote-aside {
+        position: absolute;
+        right: -20rem;
+        top: 0;
+        width: 18rem;
+        padding-left: 2rem;
+    }
+
+    @media (max-width: 1280px) {
+        .quote-aside {
+            position: static;
+            width: 100%;
+            padding-left: 0;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid var(--color-nyt-border);
+        }
+    }
+
+    .quote-box {
+        position: relative;
+        padding: 1.5rem 2rem;
+        background-color: color-mix(
+            in srgb,
+            var(--color-nyt-bg) 95%,
+            var(--color-nyt-text) 5%
+        );
+        border-left: 4px solid var(--color-nyt-accent);
+        border-radius: 4px;
+        font-style: italic;
+        color: var(--color-nyt-accent);
+    }
+
+    .quote-box::before,
+    .quote-box::after {
+        position: absolute;
+        font-size: 3rem;
+        font-family: Georgia, serif;
+        color: var(--color-nyt-accent);
+        opacity: 0.3;
+        line-height: 1;
+    }
+
+    .quote-box::before {
+        content: "\201C"; /* Left double quotation mark */
+        top: 0.25rem;
+        left: 0.5rem;
+    }
+
+    .quote-box::after {
+        content: "\201D"; /* Right double quotation mark */
+        bottom: 0.25rem;
+        right: 0.5rem;
+    }
+
+    .quote-text {
+        margin: 0;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        position: relative;
+        z-index: 1;
+    }
+</style>

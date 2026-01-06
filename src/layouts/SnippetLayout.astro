@@ -4,47 +4,49 @@ import SnippetNav from "../components/snippets/SnippetNav.astro";
 import type { CollectionEntry } from "astro:content";
 
 interface Props {
-  title: string;
-  description: string;
-  category: string;
-  categorySnippets: CollectionEntry<"snippets">[];
-  currentSlug: string;
+    title: string;
+    description: string;
+    category: string;
+    categorySnippets: CollectionEntry<"snippets">[];
+    currentSlug: string;
 }
 
 const { title, description, category, categorySnippets, currentSlug } =
-  Astro.props;
+    Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
-  <div class="py-12">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-12">
-        <!-- Sidebar Navigation -->
-        <aside class="lg:sticky lg:top-6 lg:self-start">
-          <SnippetNav
-            category={category}
-            snippets={categorySnippets}
-            currentSlug={currentSlug}
-          />
-        </aside>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-12">
+                <!-- Sidebar Navigation -->
+                <aside class="lg:sticky lg:top-6 lg:self-start">
+                    <SnippetNav
+                        category={category}
+                        snippets={categorySnippets}
+                        currentSlug={currentSlug}
+                    />
+                </aside>
 
-        <!-- Main Content -->
-        <article>
-          <header class="mb-8 border-b border-themed pb-6">
-            <div
-              class="text-sm font-sans uppercase tracking-wide text-accent mb-2"
-            >
-              {category.replace(/-/g, " ")}
+                <!-- Main Content -->
+                <article>
+                    <header class="mb-8 border-b border-themed pb-6">
+                        <div
+                            class="text-sm font-sans uppercase tracking-wide text-accent mb-2"
+                        >
+                            {category.replace(/-/g, " ")}
+                        </div>
+                        <h1 class="text-4xl font-headline font-bold mb-3">
+                            {title}
+                        </h1>
+                        <p class="text-lg text-accent">{description}</p>
+                    </header>
+
+                    <div class="prose prose-lg max-w-none">
+                        <slot />
+                    </div>
+                </article>
             </div>
-            <h1 class="text-4xl font-headline font-bold mb-3">{title}</h1>
-            <p class="text-lg text-accent">{description}</p>
-          </header>
-
-          <div class="prose prose-lg max-w-none">
-            <slot />
-          </div>
-        </article>
-      </div>
+        </div>
     </div>
-  </div>
 </BaseLayout>

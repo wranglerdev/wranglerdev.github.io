@@ -2,6 +2,7 @@ import { defineConfig } from "astro/config";
 
 import tailwindcss from "@tailwindcss/vite";
 import expressiveCode from "astro-expressive-code";
+import mdx from "@astrojs/mdx";
 
 export default defineConfig({
   site: "https://wranglerdev.github.io",
@@ -18,6 +19,7 @@ export default defineConfig({
         preserveIndent: true,
       },
     }),
+    mdx(),
   ],
 
   vite: {
