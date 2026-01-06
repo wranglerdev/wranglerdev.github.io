@@ -1,0 +1,64 @@
+---
+import BaseLayout from "../components/layout/BaseLayout.astro";
+
+const projects = [
+  {
+    title: "Lorem Ipsum Project",
+    description:
+      "Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    link: "https://github.com/yourusername/project1",
+    tags: ["TypeScript", "React", "Node.js"],
+  },
+  {
+    title: "Dolor Sit Amet",
+    description:
+      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    link: "https://github.com/yourusername/project2",
+    tags: ["Python", "FastAPI", "PostgreSQL"],
+  },
+  {
+    title: "Duis Aute Irure",
+    description:
+      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    link: "https://github.com/yourusername/project3",
+    tags: ["Astro", "Tailwind", "MDX"],
+  },
+];
+---
+
+<BaseLayout title="Projects" description="Lorem ipsum project showcase">
+  <div class="content-wrapper py-12">
+    <h1
+      class="text-5xl font-headline font-bold mb-12 border-b-2 border-text pb-6"
+    >
+      Projects
+    </h1>
+
+    <div class="space-y-8">
+      {
+        projects.map((project) => (
+          <article class="border-b border-themed pb-8 last:border-0">
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group"
+            >
+              <h2 class="text-3xl font-headline font-bold mb-3 group-hover:text-accent transition-colors">
+                {project.title}
+              </h2>
+              <p class="text-lg mb-4">{project.description}</p>
+              <div class="flex flex-wrap gap-2">
+                {project.tags.map((tag) => (
+                  <span class="px-3 py-1 text-sm font-sans border border-themed" style="background-color: color-mix(in srgb, var(--color-nyt-accent) 10%, transparent);">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </a>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</BaseLayout>

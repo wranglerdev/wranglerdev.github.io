@@ -1,0 +1,49 @@
+---
+import Logo from "../ui/Logo.astro";
+import LogoSmall from "../ui/LogoSmall.astro";
+
+const navItems = [
+  { href: "/", label: "Home" },
+  { href: "/blog", label: "Blog" },
+  { href: "/snippets", label: "Snippets" },
+  { href: "/projects", label: "Projects" },
+  { href: "/about", label: "About" },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="border-b border-themed py-6">
+  <div class="content-wrapper">
+    <div class="flex items-center justify-between">
+      <!-- Logo - Full on desktop, small on mobile -->
+      <a href="/" class="hidden md:block">
+        <Logo />
+      </a>
+      <a href="/" class="md:hidden">
+        <LogoSmall />
+      </a>
+
+      <!-- Navigation -->
+      <nav>
+        <ul class="flex items-center gap-6">
+          {
+            navItems.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class:list={[
+                    "nav-link",
+                    { "font-bold": currentPath === item.href },
+                  ]}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>

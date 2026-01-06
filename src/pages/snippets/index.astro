@@ -1,0 +1,71 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../components/layout/BaseLayout.astro";
+
+// Get all snippets and group by category
+const allSnippets = await getCollection("snippets");
+const snippetsByCategory = allSnippets.reduce((acc, snippet) => {
+  const category = snippet.data.category;
+  if (!acc[category]) {
+    acc[category] = [];
+  }
+  acc[category].push(snippet);
+  return acc;
+}, {} as Record<string, typeof allSnippets>);
+
+// Sort snippets within each category by order
+Object.keys(snippetsByCategory).forEach((category) => {
+  snippetsByCategory[category].sort(
+    (a, b) => (a.data.order || 0) - (b.data.order || 0)
+  );
+});
+---
+
+<BaseLayout
+  title="Snippets"
+  description="Documentation and code snippets lorem ipsum"
+>
+  <div class="content-wrapper py-12">
+    <h1
+      class="text-5xl font-headline font-bold mb-12 border-b-2 border-text pb-6"
+    >
+      Snippets
+    </h1>
+
+    {allSnippets.length === 0 ? (
+      <div class="text-center py-12">
+        <p class="text-xl text-accent">
+          No snippets found. Add markdown files to <code class="text-sm">src/content/snippets/</code>
+        </p>
+      </div>
+    ) : (
+      <div class="space-y-12">
+        {Object.entries(snippetsByCategory).map(([category, snippets]) => (
+          <div>
+            <h2 class="text-3xl font-headline font-bold mb-6 capitalize">
+              {category.replace(/-/g, " ")}
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {snippets.map((snippet) => (
+                <a
+                  href={`/snippets/${snippet.slug}`}
+                  class="block p-6 border border-themed transition-colors"
+                  style="--hover-border: var(--color-nyt-text);"
+                  onmouseover="this.style.borderColor='var(--hover-border)'"
+                  onmouseout="this.style.borderColor='var(--color-nyt-border)'"
+                >
+                  <h3 class="font-sans font-semibold mb-2">
+                    {snippet.data.title}
+                  </h3>
+                  <p class="text-sm text-accent">
+                    {snippet.data.description}
+                  </p>
+                </a>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+</BaseLayout>

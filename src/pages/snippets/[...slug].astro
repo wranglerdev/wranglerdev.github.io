@@ -1,0 +1,31 @@
+---
+import { getCollection } from "astro:content";
+import SnippetLayout from "../../layouts/SnippetLayout.astro";
+
+export async function getStaticPaths() {
+  const snippets = await getCollection("snippets");
+  return snippets.map((snippet) => ({
+    params: { slug: snippet.slug },
+    props: { snippet },
+  }));
+}
+
+const { snippet } = Astro.props;
+const { Content } = await snippet.render();
+
+// Get all snippets in the same category for navigation
+const allSnippets = await getCollection("snippets");
+const categorySnippets = allSnippets
+  .filter((s) => s.data.category === snippet.data.category)
+  .sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
+---
+
+<SnippetLayout
+  title={snippet.data.title}
+  description={snippet.data.description}
+  category={snippet.data.category}
+  categorySnippets={categorySnippets}
+  currentSlug={snippet.slug}
+>
+  <Content />
+</SnippetLayout>

@@ -1,0 +1,55 @@
+---
+interface Props {
+  position?: "left" | "right";
+  id?: string;
+}
+
+const { position = "right", id } = Astro.props;
+---
+
+<span
+  class:list={[
+    "margin-note",
+    position === "left" ? "margin-note-left" : "margin-note-right",
+  ]}
+  data-margin-note
+  id={id}
+>
+  <slot />
+</span>
+
+<style>
+  /* Mobile: Show as inline callout */
+  @media (max-width: 1023px) {
+    [data-margin-note] {
+      display: block;
+      border-left: 2px solid var(--color-accent);
+      padding-left: 1rem;
+      margin: 1.5rem 0;
+      font-style: italic;
+      font-size: 0.875rem;
+      color: var(--color-accent);
+    }
+  }
+
+  /* Desktop: Position in margins */
+  @media (min-width: 1024px) {
+    [data-margin-note] {
+      position: absolute;
+      width: calc((100vw - 65ch) / 2 - 4rem);
+      font-size: 0.875rem;
+      line-height: 1.5;
+      color: var(--color-accent);
+    }
+
+    .margin-note-left {
+      right: calc(100% + 2rem);
+      text-align: right;
+    }
+
+    .margin-note-right {
+      left: calc(100% + 2rem);
+      text-align: left;
+    }
+  }
+</style>

@@ -1,0 +1,27 @@
+---
+import ThemeToggle from "../ui/ThemeToggle.astro";
+import SocialLinks from "../ui/SocialLinks.astro";
+---
+
+<footer class="border-t border-themed mt-20 py-12">
+  <div class="content-wrapper">
+    <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+      <!-- Theme Toggle -->
+      <div class="order-2 md:order-1">
+        <ThemeToggle />
+      </div>
+
+      <!-- Copyright -->
+      <div class="order-1 md:order-2 text-center">
+        <p class="text-sm text-accent font-sans">
+          © {new Date().getFullYear()} All rights reserved
+        </p>
+      </div>
+
+      <!-- Social Links -->
+      <div class="order-3">
+        <SocialLinks />
+      </div>
+    </div>
+  </div>
+</footer>

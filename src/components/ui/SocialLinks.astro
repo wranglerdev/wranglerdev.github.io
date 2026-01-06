@@ -1,0 +1,32 @@
+---
+const socials = [
+  {
+    name: "LinkedIn",
+    href: "https://linkedin.com/in/yourprofile",
+  },
+  {
+    name: "Email",
+    href: "mailto:your.email@example.com",
+  },
+  {
+    name: "GitHub",
+    href: "https://github.com/yourusername",
+  },
+];
+---
+
+<div class="flex items-center gap-4">
+  {
+    socials.map((social) => (
+      <a
+        href={social.href}
+        target={social.name !== "Email" ? "_blank" : undefined}
+        rel={social.name !== "Email" ? "noopener noreferrer" : undefined}
+        class="text-themed hover-accent transition-colors text-sm font-sans"
+        aria-label={social.name}
+      >
+        {social.name}
+      </a>
+    ))
+  }
+</div>

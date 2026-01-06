@@ -1,0 +1,28 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../components/layout/BaseLayout.astro";
+import BlogCard from "../../components/blog/BlogCard.astro";
+
+// Get all blog posts, filter out drafts, sort by date
+const allBlogPosts = await getCollection("blogs", ({ data }) => {
+  return data.draft !== true;
+});
+
+const sortedPosts = allBlogPosts.sort(
+  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+);
+---
+
+<BaseLayout title="Blog" description="Lorem ipsum blog posts and articles">
+  <div class="content-wrapper py-12">
+    <h1
+      class="text-5xl font-headline font-bold mb-12 border-b-2 border-text pb-6"
+    >
+      Blog
+    </h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {sortedPosts.map((post) => <BlogCard post={post} />)}
+    </div>
+  </div>
+</BaseLayout>

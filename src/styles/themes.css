@@ -1,0 +1,22 @@
+/* Theme CSS variables */
+:root[data-theme="light"],
+:root {
+  --color-nyt-bg: #ffffff;
+  --color-nyt-text: #121212;
+  --color-nyt-border: #e5e5e5;
+  --color-nyt-accent: #6b7280;
+}
+
+:root[data-theme="sepia"] {
+  --color-nyt-bg: #f4f1ea;
+  --color-nyt-text: #2b2b2b;
+  --color-nyt-border: #d4cfc0;
+  --color-nyt-accent: #8b7355;
+}
+
+:root[data-theme="dark"] {
+  --color-nyt-bg: #1a1a1a;
+  --color-nyt-text: #e8e8e8;
+  --color-nyt-border: #333333;
+  --color-nyt-accent: #9ca3af;
+}
