@@ -13,7 +13,7 @@ interface Props {
 const { title, description, publishDate, heroImage, heroImageAlt } =
     Astro.props;
 
-const formattedDate = publishDate.toLocaleDateString("en-US", {
+const formattedDate = publishDate.toLocaleDateString("pt-BR", {
     year: "numeric",
     month: "long",
     day: "numeric",

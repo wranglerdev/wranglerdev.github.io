@@ -2,7 +2,7 @@
  * Format a date to a readable string
  */
 export function formatDate(date: Date): string {
-  return date.toLocaleDateString("en-US", {
+  return date.toLocaleDateString("pt-BR", {
     year: "numeric",
     month: "long",
     day: "numeric",
@@ -30,7 +30,7 @@ export function truncate(text: string, length: number = 150): string {
  * Get unique tags from collection entries
  */
 export function getUniqueTags<T extends { data: { tags?: string[] } }>(
-  entries: T[]
+  entries: T[],
 ): string[] {
   const tagSet = new Set<string>();
   entries.forEach((entry) => {
@@ -44,14 +44,17 @@ export function getUniqueTags<T extends { data: { tags?: string[] } }>(
  */
 export function groupBy<T>(
   array: T[],
-  keyFn: (item: T) => string
+  keyFn: (item: T) => string,
 ): Record<string, T[]> {
-  return array.reduce((acc, item) => {
-    const key = keyFn(item);
-    if (!acc[key]) {
-      acc[key] = [];
-    }
-    acc[key].push(item);
-    return acc;
-  }, {} as Record<string, T[]>);
+  return array.reduce(
+    (acc, item) => {
+      const key = keyFn(item);
+      if (!acc[key]) {
+        acc[key] = [];
+      }
+      acc[key].push(item);
+      return acc;
+    },
+    {} as Record<string, T[]>,
+  );
 }
